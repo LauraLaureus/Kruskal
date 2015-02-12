@@ -2,13 +2,21 @@ package kruskal;
 
 public class Arista implements Comparable<Arista>{
 
-    private final int uno;
-    private final int dos;
+    private final int u;
+    private final int v;
+
+    public int getU() {
+        return u;
+    }
+
+    public int getV() {
+        return v;
+    }
     private final int peso;
 
     public Arista(int a, int b, int peso) {
-        this.uno = a;
-        this.dos = b;
+        this.u = a;
+        this.v = b;
         this.peso = peso;
     }
 

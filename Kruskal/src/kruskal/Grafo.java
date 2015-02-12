@@ -1,12 +1,9 @@
 package kruskal;
 
-import java.util.ArrayList;
-
 public class Grafo {
 
-    //TODO cargarselo todo 
     private final int numVertices;
-    private final ContenedorAristas aristas = new ContenedorAristas();
+    private ContenedorAristas aristas;
     private final EstructuraParticion estructuraParticion;
 
     public Grafo(int numVertices) {
@@ -14,13 +11,16 @@ public class Grafo {
         estructuraParticion = new EstructuraParticion(numVertices);
     }
 
+    public int getNumVertices() {
+        return numVertices;
+    }
+
     public EstructuraParticion getEstructuraParticion() {
         return estructuraParticion;
     }
 
-    public void añadirArista(int verticeA, int verticeB, int peso) {
-        Arista nueva = new Arista (verticeA,verticeB,peso);
-        aristas.añadirArista(nueva);
+    public void añadirContenedorAristas(ContenedorAristas contenedorAristas) {
+        this.aristas = contenedorAristas;
     }
     
     public Arista[] obtenerConjuntoAristasOrdenado(){
