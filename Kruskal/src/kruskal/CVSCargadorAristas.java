@@ -22,16 +22,7 @@ public class CVSCargadorAristas {
 
     public Grafo carga() {
 
-        /*
-         mientras haya líneas 
-         Lee una línea DONE
-         parsea la línea DONE
-         añade los vértices al conjunto
-         crea la arista
-         añade la arista al conjunto
-
-         Crear grafo con el conjunto de aristas y el número de vértices del conjunto
-         */
+       
         String line = leerLinea();
         String[] lineaPartida;
         int[] lineaTraducida = new int[3];
@@ -39,7 +30,7 @@ public class CVSCargadorAristas {
 
         while (line != null) {
             //si comienza por # es un comentario y nos lo saltamos
-            if (line.charAt(0) != '#') {
+            if ( (line.length() > 0) && (line.charAt(0) != '#')) {
                 lineaPartida = line.split(",");
                 lineaTraducida = traduceLinea(lineaPartida);
                 añadeVerticesAlConjunto(lineaTraducida);
@@ -54,6 +45,8 @@ public class CVSCargadorAristas {
         
         Grafo resultado = new Grafo( conjuntoVertices.size());
         resultado.añadirContenedorAristas(contAristas);
+        
+        /*TO-DO comprobar que es conexo*/
         return resultado;
     }
 

@@ -6,10 +6,10 @@ public class Kruskal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int numVertices = 5; //cargar numero de vertices
-        Grafo G = new Grafo(numVertices);
-        G.añadirContenedorAristas(new ContenedorAristas()); //cargar aristas
-        ContenedorAristas solucion = kruskal(G);
+        CVSCargadorAristas cargador = new CVSCargadorAristas("Entrada.txt");
+        Grafo g = cargador.carga();
+        pruebaCargador(g);
+        //ContenedorAristas solucion = kruskal();
         
     }
     
@@ -34,5 +34,10 @@ public class Kruskal {
             }
         }
         return T;
+    }
+
+    private static void pruebaCargador(Grafo g) {
+        System.out.println("Num vértices:" + g.getNumVertices());
+        
     }
 }

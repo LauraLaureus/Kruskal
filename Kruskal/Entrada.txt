@@ -1,0 +1,8 @@
+#Esto es un comentario
+#Para definir una arista
+#vertice1,vertice2,peso
+
+#Crea grafo con dos vértices
+1,2,3
+#Prueba 2: grafo de 3 vértices
+1,3,2
