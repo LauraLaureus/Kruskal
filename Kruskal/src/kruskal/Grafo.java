@@ -24,7 +24,8 @@ public class Grafo {
     }
     
     public Arista[] obtenerConjuntoAristasOrdenado(){
-        return aristas.ordernar().toArray();
+        return null;
+//return aristas.ordernar().toArray();
     }
 
 }

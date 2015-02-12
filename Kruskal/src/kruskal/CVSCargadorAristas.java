@@ -24,54 +24,61 @@ public class CVSCargadorAristas {
 
         /*
          mientras haya líneas 
-            Lee una línea DONE
-            parsea la línea
-            añade los vértices al conjunto
-            crea la arista
-            añade la arista al conjunto
+         Lee una línea DONE
+         parsea la línea DONE
+         añade los vértices al conjunto
+         crea la arista
+         añade la arista al conjunto
 
          Crear grafo con el conjunto de aristas y el número de vértices del conjunto
          */
-        
-        String line  = leerLinea();
+        String line = leerLinea();
         String[] lineaPartida;
         int[] lineaTraducida = new int[3];
-        Arista nuevaArista;
-        ContenedorAristas contAristas;
-        
- 
+        ContenedorAristas contAristas = new ContenedorAristas();
+
         while (line != null) {
             //si comienza por # es un comentario y nos lo saltamos
-            if(line.charAt(0) != '#'){
+            if (line.charAt(0) != '#') {
                 lineaPartida = line.split(",");
                 lineaTraducida = traduceLinea(lineaPartida);
-                
-                
-                
+                añadeVerticesAlConjunto(lineaTraducida);
+                contAristas.añadirArista(new Arista(
+                        lineaTraducida[0],
+                        lineaTraducida[1],
+                        lineaTraducida[2]
+                ));
             }
             line = leerLinea();
         }
-
-        return null;
+        
+        Grafo resultado = new Grafo( conjuntoVertices.size());
+        resultado.añadirContenedorAristas(contAristas);
+        return resultado;
     }
-    
-    private String leerLinea(){
+
+    private String leerLinea() {
         String line;
         try {
             line = lector.readLine();
         } catch (IOException ex) {
             line = null;
         }
-        
+
         return line;
     }
 
     private int[] traduceLinea(String[] lineaPartida) {
-        return new int[3] {
+        int[] resultado = {
             Integer.parseInt(lineaPartida[0]),
             Integer.parseInt(lineaPartida[1]),
             Integer.parseInt(lineaPartida[2])
         };
+        return resultado;
     }
+
+    private void añadeVerticesAlConjunto(int[] lineaTraducida) {
+        conjuntoVertices.add(lineaTraducida[0]);
+        conjuntoVertices.add(lineaTraducida[1]);
     }
 }
