@@ -2,8 +2,8 @@ package kruskal;
 
 public class Arista implements Comparable<Arista>{
 
-    private final int u;
-    private final int v;
+    private final Integer u;
+    private final Integer v;
 
     public int getU() {
         return u;

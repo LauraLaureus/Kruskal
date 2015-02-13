@@ -25,7 +25,7 @@ public class CVSCargadorAristas {
        
         String line = leerLinea();
         String[] lineaPartida;
-        int[] lineaTraducida = new int[3];
+        Integer[] lineaTraducida = new Integer[3];
         ContenedorAristas contAristas = new ContenedorAristas();
 
         while (line != null) {
@@ -34,11 +34,15 @@ public class CVSCargadorAristas {
                 lineaPartida = line.split(",");
                 lineaTraducida = traduceLinea(lineaPartida);
                 añadeVerticesAlConjunto(lineaTraducida);
-                contAristas.añadirArista(new Arista(
-                        lineaTraducida[0],
-                        lineaTraducida[1],
-                        lineaTraducida[2]
-                ));
+                if((lineaTraducida[0] != null) &&
+                   (lineaTraducida[1]!= null) &&
+                   (lineaTraducida[2] != null))
+                        contAristas.añadirArista(new Arista(
+                            lineaTraducida[0],
+                            lineaTraducida[1],
+                            lineaTraducida[2]
+                        ));
+                
             }
             line = leerLinea();
         }
@@ -61,16 +65,29 @@ public class CVSCargadorAristas {
         return line;
     }
 
-    private int[] traduceLinea(String[] lineaPartida) {
-        int[] resultado = {
+    private Integer[] traduceLinea(String[] lineaPartida) {
+        
+        //si es Inf entonces no existe arista pero existen los vértices
+        for (int i = 0; i < lineaPartida.length; i++) {
+            if( lineaPartida[i].equalsIgnoreCase("Inf")){
+                lineaPartida[i] = "-1";
+            }
+        }
+
+        Integer[] resultado = {
             Integer.parseInt(lineaPartida[0]),
             Integer.parseInt(lineaPartida[1]),
             Integer.parseInt(lineaPartida[2])
         };
+        
+        if(resultado[0] < 0) resultado[0] = null;
+        else if(resultado[1] < 0) resultado[1] = null;
+        else if(resultado[2] < 0) resultado[2] = null;
+        
         return resultado;
     }
 
-    private void añadeVerticesAlConjunto(int[] lineaTraducida) {
+    private void añadeVerticesAlConjunto(Integer[] lineaTraducida) {
         conjuntoVertices.add(lineaTraducida[0]);
         conjuntoVertices.add(lineaTraducida[1]);
     }
