@@ -9,24 +9,26 @@ public class Kruskal {
         CVSCargadorAristas cargador = new CVSCargadorAristas("Entrada.txt");
         Grafo g = cargador.carga();
         pruebaCargador(g);
-        //ContenedorAristas solucion = kruskal();
+        ContenedorAristas solucion = kruskal(g);
+        salidaKruskal(solucion);
+        //pruebaAristas(g);
         
     }
     
-    private static ContenedorAristas kruskal (Grafo G){
-        int n = G.getNumVertices();
+    private static ContenedorAristas kruskal (Grafo g){
+        int n = g.getNumVertices();
         ContenedorAristas T = new ContenedorAristas();
         //La inicialización ya está echa sola al crear Grafo
         
-        Arista[] aristasOrdenadas = G.obtenerConjuntoAristasOrdenado();
+        Arista[] aristasOrdenadas = g.getAristas().getConjuntoAristasOrdenado();
         int uconj, vconj;
         
         for (Arista arista : aristasOrdenadas) {
-            uconj = G.getEstructuraParticion().buscar(arista.getU());
-            vconj = G.getEstructuraParticion().buscar(arista.getV());
+            uconj = g.getEstructuraParticion().buscar(arista.getU());
+            vconj = g.getEstructuraParticion().buscar(arista.getV());
             
             if (uconj != vconj){
-                G.getEstructuraParticion().fusionar(uconj, vconj);
+                g.getEstructuraParticion().fusionar(uconj, vconj);
                 T.añadirArista(arista);
             }
             if (T.size() >= n){
@@ -35,9 +37,25 @@ public class Kruskal {
         }
         return T;
     }
-
+    
     private static void pruebaCargador(Grafo g) {
         System.out.println("Num vértices:" + g.getNumVertices());
         
+    }
+
+/*
+    private static void pruebaAristas(Grafo g) {
+        Arista[] aristas = g.getAristas().obtenerConjuntoAristasOrdenado();
+        for (int i = 0; i < aristas.length; i++) {
+            System.out.println(aristas[i].getPeso());
+            
+        }
+    }*/
+
+    private static void salidaKruskal(ContenedorAristas solucion) {
+        solucion.getConjuntoAristasOrdenado();
+        for (Arista arista : solucion) {
+            System.out.println("Arista: " + arista.getU() + ", " + arista.getV() + "; con peso: " + arista.getPeso());
+        }
     }
 }

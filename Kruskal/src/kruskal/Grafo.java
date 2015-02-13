@@ -22,10 +22,9 @@ public class Grafo {
     public void añadirContenedorAristas(ContenedorAristas contenedorAristas) {
         this.aristas = contenedorAristas;
     }
-    
-    public Arista[] obtenerConjuntoAristasOrdenado(){
-        return null;
-//return aristas.ordernar().toArray();
-    }
 
+    public ContenedorAristas getAristas() {
+        return aristas;
+    }
+    
 }

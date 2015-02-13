@@ -27,10 +27,10 @@ public class EstructuraParticion {
         int i = vertice;
         
         while (conjunto[i-1] > 0){
-            i = conjunto[i];
+            i = conjunto[i-1];//Retoque Laura
         }
         
-        return i+1;
+        return i;
     }
     
     public void fusionar(int verticeA, int verticeB){
