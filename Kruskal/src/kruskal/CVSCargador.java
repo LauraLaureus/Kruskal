@@ -6,12 +6,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.TreeSet;
 
-public class CVSCargadorAristas {
+public class CVSCargador {
 
     private final TreeSet<Integer> conjuntoVertices;
     private BufferedReader lector = null;
 
-    public CVSCargadorAristas(String ruta) {
+    public CVSCargador(String ruta) {
         try {
             this.lector = new BufferedReader(new FileReader(ruta));
         } catch (FileNotFoundException ex) {
@@ -50,7 +50,6 @@ public class CVSCargadorAristas {
         Grafo resultado = new Grafo( conjuntoVertices.size());
         resultado.añadirContenedorAristas(contAristas);
         
-        /*TO-DO comprobar que es conexo*/
         return resultado;
     }
 

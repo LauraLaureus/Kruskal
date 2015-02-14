@@ -2,13 +2,14 @@
 package kruskal;
 public class Kruskal {
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
-        CVSCargadorAristas cargador = new CVSCargadorAristas("Entrada.txt");
+        CVSCargador cargador = new CVSCargador("Entrada.txt");
         Grafo g = cargador.carga();
+        
+        //HACER método que diga si el grafo es conexo o no.
         pruebaCargador(g);
+        
         ContenedorAristas solucion = kruskal(g);
         salidaKruskal(solucion);
         //pruebaAristas(g);
@@ -22,6 +23,7 @@ public class Kruskal {
         
         Arista[] aristasOrdenadas = g.getAristas().getConjuntoAristasOrdenado();
         int uconj, vconj;
+        
         
         for (Arista arista : aristasOrdenadas) {
             uconj = g.getEstructuraParticion().buscar(arista.getU());
