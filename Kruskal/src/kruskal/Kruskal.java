@@ -7,13 +7,14 @@ public class Kruskal {
         CVSCargador cargador = new CVSCargador("Entrada.txt");
         Grafo g = cargador.carga();
         
+        if(g.esConexo()){
         //HACER método que diga si el grafo es conexo o no.
-        pruebaCargador(g);
-        
+        muestaNumeroVertices(g);
         ContenedorAristas solucion = kruskal(g);
         salidaKruskal(solucion);
+        }
         //pruebaAristas(g);
-        
+        System.out.println("El grafo pasado en la entrada no es conexo.");
     }
     
     private static ContenedorAristas kruskal (Grafo g){
@@ -40,7 +41,7 @@ public class Kruskal {
         return T;
     }
     
-    private static void pruebaCargador(Grafo g) {
+    private static void muestaNumeroVertices(Grafo g) {
         System.out.println("Num vértices:" + g.getNumVertices());
         
     }
