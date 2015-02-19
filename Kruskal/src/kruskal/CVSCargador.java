@@ -8,6 +8,7 @@ import java.util.TreeSet;
 
 public class CVSCargador {
 
+
     private final TreeSet<Integer> conjuntoVertices;
     private BufferedReader lector = null;
 
@@ -25,30 +26,27 @@ public class CVSCargador {
        
         String line = leerLinea();
         String[] lineaPartida;
-        Integer[] lineaTraducida = new Integer[3];
+        Arista arista;
         ContenedorAristas contAristas = new ContenedorAristas();
+        ConjuntoVertices vertices = new ConjuntoVertices();
 
         while (line != null) {
             //si comienza por # es un comentario y nos lo saltamos
             if ( (line.length() > 0) && (line.charAt(0) != '#')) {
                 lineaPartida = line.split(",");
-                lineaTraducida = traduceLinea(lineaPartida);
-                añadeVerticesAlConjunto(lineaTraducida);
-                if((lineaTraducida[0] != null) &&
-                   (lineaTraducida[1]!= null) &&
-                   (lineaTraducida[2] != null))
-                        contAristas.añadirArista(new Arista(
-                            lineaTraducida[0],
-                            lineaTraducida[1],
-                            lineaTraducida[2]
-                        ));
+                vertices.añadeVértice(traduceVertice(lineaPartida,0));
+                vertices.añadeVértice(traduceVertice(lineaPartida,1));
+                arista = creaArista(lineaPartida);
+                if(arista != null){
+                    contAristas.añadirArista(arista);
+                }}
                 
-            }
             line = leerLinea();
         }
         
         Grafo resultado = new Grafo( conjuntoVertices.size());
         resultado.añadirContenedorAristas(contAristas);
+        resultado.añadirVertices(vertices);
         
         return resultado;
     }
