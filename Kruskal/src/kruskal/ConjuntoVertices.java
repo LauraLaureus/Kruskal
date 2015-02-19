@@ -21,13 +21,9 @@ public class ConjuntoVertices {
     public boolean esConexo(){
         boolean[] vertices = new boolean[conjunto.size()+1];
         boolean flag = false;
-        for (Integer id  : conjunto.keySet()) {
-            exploraGrafo(id,vertices); 
-            if(compruebaConexo(vertices)){
-                flag = true;
-                break;
-            }
-        }
+        Integer id = conjunto.entrySet().iterator().next().getKey();
+        exploraGrafo(id,vertices); 
+          
         return flag;
     }
 

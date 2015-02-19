@@ -1,11 +1,10 @@
 package kruskal;
 
-/*DEPRECATED*/
 public class EstructuraParticion {
     private final int[] conjunto;
 
     public EstructuraParticion(int numeroVertices) {
-        conjunto = new int[numeroVertices];
+        conjunto = new int[numeroVertices+1];
         inicializar();
     }
     
@@ -27,27 +26,26 @@ public class EstructuraParticion {
     public int buscar (int vertice){
         int i = vertice;
         
-        while (conjunto[i-1] > 0){
-            i = conjunto[i-1];//Retoque Laura
+        while (conjunto[i] > 0){
+            i = conjunto[i];//Retoque Laura
         }
         
         return i;
     }
     
     public void fusionar(int verticeA, int verticeB){
+
         
-        int l_verticeA = verticeA-1;
-        int l_verticeB = verticeB-1;
-        
-        if(conjunto[l_verticeA] == conjunto[l_verticeB]){
-            conjunto[l_verticeA] = conjunto[l_verticeA]-1;
-            conjunto[l_verticeB] = l_verticeA;
+        if(conjunto[verticeA] == conjunto[verticeB]){
+            conjunto[verticeA] = conjunto[verticeA]-1;
+            conjunto[verticeB] = verticeA;
         }else{
-            if(conjunto[l_verticeA] < conjunto[l_verticeB]){
-                conjunto[l_verticeB] = l_verticeA;
+            if(conjunto[verticeA] < conjunto[verticeB]){
+                conjunto[verticeB] = verticeA;
             }else{
-                conjunto[l_verticeA] = l_verticeB;
+                conjunto[verticeA] = verticeB;
             }
         }
     }
+    
 }
