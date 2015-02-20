@@ -16,7 +16,7 @@ public class Kruskal {
         }else{
             System.out.println("El grafo pasado en la entrada no es conexo.");
         }
-        //pruebaAristas(g);
+        
        
     }
     
@@ -49,14 +49,7 @@ public class Kruskal {
         
     }
 
-/*
-    private static void pruebaAristas(Grafo g) {
-        Arista[] aristas = g.getAristas().obtenerConjuntoAristasOrdenado();
-        for (int i = 0; i < aristas.length; i++) {
-            System.out.println(aristas[i].getPeso());
-            
-        }
-    }*/
+
 
     private static void salidaKruskal(ContenedorAristas solucion) {
         solucion.getConjuntoAristasOrdenado();
