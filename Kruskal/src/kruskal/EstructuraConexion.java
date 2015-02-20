@@ -3,7 +3,7 @@ package kruskal;
 import java.util.HashMap;
 import java.util.HashSet;
 
-class EstructuraConexion {
+class EstructuraConexion{
 
     private final HashSet<Integer> conectados;
     private final HashMap<Integer, Vertice> conjunto;
@@ -13,8 +13,9 @@ class EstructuraConexion {
         this.conjunto = conjunto;
     }
 
-    public void conecta(Vertice v) {
-        conectados.add(v.getId());
+
+    public void conecta(Integer v) {
+        conectados.add(v);
     }
 
     public boolean estaTotalmenteConectado() {
@@ -23,16 +24,16 @@ class EstructuraConexion {
     }
 
     private void exploraGrafo(Vertice v) {
-        if (!estaVerticeConectado(v)) {
-            conecta(v);
+        if (!estaVerticeConectado(v.getId())) {
+            conecta(v.getId());
             for (Vertice value : v.getPosibilidades().values()) {
                 exploraGrafo(value);
             }
         }
     }
 
-    public boolean estaVerticeConectado(Vertice v) {
-        return conectados.contains(v.getId());
+    public boolean estaVerticeConectado(Integer v) {
+        return conectados.contains(v);
     }
 
 }
