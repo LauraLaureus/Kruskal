@@ -7,27 +7,38 @@ import java.util.HashSet;
 public class ConjuntoVertices {
 
     final private HashMap<Integer, Vertice> conjunto;
+
     
     private class EstructuraConexion{
     
-        private HashSet<Vertice> conectados;
-        private final int verticesEsperados;
+        private final HashSet<Integer> conectados;
+        private final HashMap<Integer,Vertice> conjunto;
         
-        public EstructuraConexion(int numVertices) {
+        public EstructuraConexion(HashMap<Integer,Vertice> conjunto) {
             conectados = new HashSet<>();
-            verticesEsperados = numVertices;
+            this.conjunto = conjunto;
         }
         
-        public void conecta(Vertice id){
-            conectados.add(id);
+        public void conecta(Vertice v){
+            conectados.add(v.getId());
         }
         
         public boolean estaTotalmenteConectado(){
-            return conectados.size() == verticesEsperados;
+            exploraGrafo(this.conjunto.entrySet().iterator().next().getValue());
+            return conectados.size() == conjunto.size();
         }
         
-        public boolean estaVerticeConectado(Vertice id){
-            return conectados.contains(id);
+        private void  exploraGrafo(Vertice v) {
+            if (!estaVerticeConectado(v)) {
+                conecta(v);
+                for (Vertice value : v.getPosibilidades().values()) {
+                    exploraGrafo(value);
+                }
+            }
+        }
+        
+        public boolean estaVerticeConectado(Vertice v){
+            return conectados.contains(v.getId());
         }
         
     }
@@ -44,25 +55,24 @@ public class ConjuntoVertices {
     }
     
     public boolean esConexo(){
-        EstructuraConexion conectados = new EstructuraConexion(conjunto.size());
-        
-        //Obtener el primer elemento del mapa
-        Vertice v = conjunto.entrySet().iterator().next().getValue();
-        exploraGrafo(v,conectados); 
-          
-        return conectados.estaTotalmenteConectado();
-    }
-
-    private EstructuraConexion exploraGrafo(Vertice v, EstructuraConexion conectados) {
-        if(!conectados.estaVerticeConectado(v)){
-            conectados.conecta(v);
-            for (Vertice value : v.getPosibilidades().values()) {
-                exploraGrafo(value,conectados);
-            }
-        }
-        return conectados;
+        return new EstructuraConexion(conjunto).estaTotalmenteConectado();
     }
 
 
+    public boolean contiene(Vertice v){
+        return conjunto.containsValue(v);
+    }
+
+    public void enlaza(Vertice a, Vertice aAñadir){
+        conjunto.get(a.getId()).enlazar(aAñadir);
+                
+    }
+   
+    public int size() {
+        return this.conjunto.size();
+    }
     
+    public Vertice dameVertice(Integer id){
+        return conjunto.get(id);
+    }
 }

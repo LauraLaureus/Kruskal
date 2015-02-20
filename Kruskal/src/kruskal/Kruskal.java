@@ -6,15 +6,18 @@ public class Kruskal {
     public static void main(String[] args) {
         CVSCargador cargador = new CVSCargador("Entrada.txt");
         Grafo g = cargador.carga();
-        
+        //System.out.println(g.esConexo());
         if(g.esConexo()){
-        //HACER método que diga si el grafo es conexo o no.
+
         muestaNumeroVertices(g);
         ContenedorAristas solucion = kruskal(g);
         salidaKruskal(solucion);
+        
+        }else{
+            System.out.println("El grafo pasado en la entrada no es conexo.");
         }
         //pruebaAristas(g);
-        System.out.println("El grafo pasado en la entrada no es conexo.");
+       
     }
     
     private static ContenedorAristas kruskal (Grafo g){

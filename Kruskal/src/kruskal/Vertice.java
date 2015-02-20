@@ -28,14 +28,7 @@ public class Vertice {
         return posibilidades;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        hash = 17 * hash + Objects.hashCode(this.posibilidades);
-        return hash;
-    }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

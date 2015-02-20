@@ -4,11 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.TreeSet;
 
 public class CVSCargador {
 
-    private final TreeSet<Integer> conjuntoVertices;
     private BufferedReader lector = null;
 
     public CVSCargador(String ruta) {
@@ -17,7 +15,6 @@ public class CVSCargador {
         } catch (FileNotFoundException ex) {
             System.out.println("No se encontró el archivo");
         }
-        this.conjuntoVertices = new TreeSet<>();
     }
 
     public Grafo carga() {
@@ -37,9 +34,14 @@ public class CVSCargador {
                 b = traduceAVertice(lineaPartida, 1);
 
                 if (a != null && b != null) {
+                    if(vertices.contiene(a)){
+                        a = vertices.dameVertice(a.getId());
+                    }
+                    if(vertices.contiene(b)){
+                        b = vertices.dameVertice(b.getId());
+                    }
                     a.enlazar(b);
                     b.enlazar(a);
-
                 }
                 vertices.añadeVértice(a);
                 vertices.añadeVértice(b);
@@ -53,7 +55,7 @@ public class CVSCargador {
             line = leerLinea();
         }
 
-        Grafo resultado = new Grafo(conjuntoVertices.size());
+        Grafo resultado = new Grafo(vertices.size());
         resultado.añadirContenedorAristas(contAristas);
         resultado.añadirVertices(vertices);
 
@@ -97,10 +99,7 @@ public class CVSCargador {
         return resultado;
     }
 
-    private void añadeVerticesAlConjunto(Integer[] lineaTraducida) {
-        conjuntoVertices.add(lineaTraducida[0]);
-        conjuntoVertices.add(lineaTraducida[1]);
-    }
+
 
     private Vertice traduceAVertice(String[] lineaPartida, int i) {
 
