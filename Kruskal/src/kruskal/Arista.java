@@ -1,6 +1,6 @@
 package kruskal;
 
-public class Arista implements Comparable<Arista>{
+public class Arista implements Comparable<Arista> {
 
     private final Integer u;
     private final Integer v;
@@ -26,18 +26,23 @@ public class Arista implements Comparable<Arista>{
 
     @Override
     public int compareTo(Arista o) {
-        if(this.peso == o.peso) return 0;
-        return this.peso-o.peso;
+        if (this.peso == o.peso) {
+            return 0;
+        }
+        return this.peso - o.peso;
     }
-    
+
     @Override
-    public boolean equals(Object arista){
-        if (!(arista instanceof Arista)) return false;
+    public boolean equals(Object arista) {
+        if (!(arista instanceof Arista)) {
+            return false;
+        }
         Arista o = (Arista) arista;
-        if (this.getU() == o.getU() && this.getV() == o.getV())
+        if (this.getU() == o.getU() && this.getV() == o.getV()) {
             return true;
-        else if (this.getU() == o.getV() && this.getV() == o.getU())
+        } else if (this.getU() == o.getV() && this.getV() == o.getU()) {
             return true;
+        }
         return false;
     }
 

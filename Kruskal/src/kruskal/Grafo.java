@@ -7,7 +7,6 @@ public class Grafo {
     private final EstructuraParticion estructuraParticion;
     private ConjuntoVertices vertices;
 
-    
     public Grafo(int numVertices) {
         this.numVertices = numVertices;
         estructuraParticion = new EstructuraParticion(numVertices);
@@ -32,8 +31,8 @@ public class Grafo {
     public void añadirVertices(ConjuntoVertices vertices) {
         this.vertices = vertices;
     }
-    
-    public boolean esConexo(){
+
+    public boolean esConexo() {
         return vertices.esConexo();
     }
 }

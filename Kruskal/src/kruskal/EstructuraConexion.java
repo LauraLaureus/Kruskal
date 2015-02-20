@@ -3,7 +3,7 @@ package kruskal;
 import java.util.HashMap;
 import java.util.HashSet;
 
-class EstructuraConexion{
+class EstructuraConexion {
 
     private final HashSet<Integer> conectados;
     private final HashMap<Integer, Vertice> conjunto;
@@ -12,7 +12,6 @@ class EstructuraConexion{
         conectados = new HashSet<>();
         this.conjunto = conjunto;
     }
-
 
     public void conecta(Integer v) {
         conectados.add(v);
@@ -37,4 +36,3 @@ class EstructuraConexion{
     }
 
 }
-

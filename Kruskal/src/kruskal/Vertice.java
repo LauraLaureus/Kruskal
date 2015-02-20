@@ -1,4 +1,3 @@
-
 package kruskal;
 
 import java.util.HashMap;
@@ -7,7 +6,7 @@ import java.util.Objects;
 public class Vertice {
 
     private final Integer id;
-    private HashMap<Integer, Vertice> posibilidades;
+    private final HashMap<Integer, Vertice> posibilidades;
 
     public Vertice(Integer id) {
         this.id = id;
@@ -17,9 +16,9 @@ public class Vertice {
     public Integer getId() {
         return id;
     }
-    
-    public void enlazar(Vertice v){
-        if(!posibilidades.containsKey(v.getId())){
+
+    public void enlazar(Vertice v) {
+        if (!posibilidades.containsKey(v.getId())) {
             posibilidades.put(v.getId(), v);
         }
     }
@@ -28,7 +27,6 @@ public class Vertice {
         return posibilidades;
     }
 
-    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -40,7 +38,5 @@ public class Vertice {
         final Vertice other = (Vertice) obj;
         return Objects.equals(this.id, other.id);
     }
-    
-    
-    
+
 }

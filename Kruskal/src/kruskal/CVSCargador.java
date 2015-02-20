@@ -34,10 +34,10 @@ public class CVSCargador {
                 b = traduceAVertice(lineaPartida, 1);
 
                 if (a != null && b != null) {
-                    if(vertices.contiene(a)){
+                    if (vertices.contiene(a)) {
                         a = vertices.dameVertice(a.getId());
                     }
-                    if(vertices.contiene(b)){
+                    if (vertices.contiene(b)) {
                         b = vertices.dameVertice(b.getId());
                     }
                     a.enlazar(b);
@@ -98,8 +98,6 @@ public class CVSCargador {
 
         return resultado;
     }
-
-
 
     private Vertice traduceAVertice(String[] lineaPartida, int i) {
 
